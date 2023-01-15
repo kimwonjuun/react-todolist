@@ -1,39 +1,35 @@
-import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import TodoList from './components/TodoList';
+import Input from './components/Input';
+// 투두앱
+// 1. 인풋, 인풋이 출력될 투두리스트 부분
+// 2. 인풋을 입력하고 버튼을 누르면 투두리스트로 출력
+// 3. 출력된 투두리스트는 진행 완료 간 스위치 가능, 삭제 가능
 
-// TODOLIST
-// 1. input area, todolist area.
-// 2. 인풋창 입력 -> 버튼 -> 투두리스트로 출력.
-// 3. 투두리스트 진행/완료 간 스위치 가능, 삭제 가능.
-
-function App() {
-  const [inputValue, setInputValue] = useState('');
+const App = () => {
+  const [todos, setTodos] = useState([
+    {
+      title: '제목1',
+      contents: '내용1',
+      isDone: false,
+      id: uuidv4(),
+    },
+    {
+      title: '제목2',
+      contents: '내용2',
+      isDone: true,
+      id: uuidv4(),
+    },
+  ]);
 
   return (
-    <>
-      <main>
-        <form>
-          {/* 인풋 */}
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(event) => {
-              // console.log(event);
-              setInputValue(event.target.value);
-              // console.log(event.target.value);
-            }}
-          />
-          <button>제출</button>
-        </form>
-
-        <main>
-          <h3>할일😂</h3>
-
-          <h3>완료😗</h3>
-        </main>
-      </main>
-    </>
+    <main>
+      <Input setTodos={setTodos} />
+      <TodoList isActive={true} todos={todos} setTodos={setTodos} />
+      <TodoList isActive={false} todos={todos} setTodos={setTodos} />
+    </main>
   );
-}
+};
 
 export default App;
