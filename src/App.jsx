@@ -1,5 +1,4 @@
 import './App.css';
-import Input from './components/Input';
 import { useState } from 'react';
 
 // TODOLIST
@@ -8,26 +7,31 @@ import { useState } from 'react';
 // 3. 투두리스트 진행/완료 간 스위치 가능, 삭제 가능.
 
 function App() {
-  // const [todos, setTodos] = useState([
-  //   {
-  //     id: '',
-  //     title: '',
-  //     contents: '',
-  //     isDone: false,
-  //   },
-  // ]);
+  const [inputValue, setInputValue] = useState('');
+
   return (
     <>
-      <header className="header">TODOLIST</header>
-      <main className="main">
-        <Input />
-        <div>
+      <main>
+        <form>
+          {/* 인풋 */}
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(event) => {
+              // console.log(event);
+              setInputValue(event.target.value);
+              // console.log(event.target.value);
+            }}
+          />
+          <button>제출</button>
+        </form>
+
+        <main>
           <h3>할일😂</h3>
 
           <h3>완료😗</h3>
-        </div>
+        </main>
       </main>
-      <footer className="footer">복습</footer>
     </>
   );
 }
