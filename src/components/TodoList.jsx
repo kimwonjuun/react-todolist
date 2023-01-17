@@ -10,7 +10,14 @@ const TodoList = ({ todos, isActive, setTodos }) => {
           return item.isDone === !isActive;
         })
         .map((item) => {
-          return <Todo setTodos={setTodos} item={item} isActive={isActive} />;
+          return (
+            <Todo
+              setTodos={setTodos}
+              item={item}
+              isActive={isActive}
+              key={item.id}
+            />
+          );
         })}
     </div>
   );
